@@ -1,0 +1,45 @@
+# Interactive RSA encryption and decryption
+
+# Get user input for p, q, e, and M
+p = int(input("Enter the value of p (prime number): "))
+q = int(input("Enter the value of q (prime number): "))
+e = int(input("Enter the value of e (public exponent): "))
+M = int(input("Enter the message M (integer to be encrypted): "))
+
+# Calculate n and phi(n)
+n = p * q
+phi_n = (p - 1) * (q - 1)
+
+# Calculate d (modular inverse of e mod phi(n))
+def extended_gcd(a, b):
+    if b == 0:
+        return a, 1, 0
+    gcd, x1, y1 = extended_gcd(b, a % b)
+    x = y1
+    y = x1 - (a // b) * y1
+    return gcd, x, y
+
+# Find modular inverse of e mod phi(n)
+def mod_inverse(e, phi_n):
+    gcd, x, y = extended_gcd(e, phi_n)
+    if gcd != 1:
+        raise Exception('Modular inverse does not exist')
+    else:
+        return x % phi_n
+
+d = mod_inverse(e, phi_n)
+
+# Encryption: C = M^e mod n
+C = (M ** e) % n
+
+# Decryption: M' = C^d mod n
+M_prime = (C ** d) % n
+
+# Display results
+print(f"\nCalculated values:")
+print(f"n = p * q = {n}")
+print(f"phi(n) = (p - 1) * (q - 1) = {phi_n}")
+print(f"Private key d = {d}")
+print(f"Ciphertext C = M^e mod n = {C}")
+print(f"Decrypted message M' = C^d mod n = {M_prime}")
+
