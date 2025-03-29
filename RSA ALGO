@@ -42,4 +42,8 @@ print(f"phi(n) = (p - 1) * (q - 1) = {phi_n}")
 print(f"Private key d = {d}")
 print(f"Ciphertext C = M^e mod n = {C}")
 print(f"Decrypted message M' = C^d mod n = {M_prime}")
-
+# check if M and M' are equal
+if M == M_prime:
+    print(f"Original message and Decrypted message are equal!")
+else:
+    print(f"The original message and decrypted message are not equal")
