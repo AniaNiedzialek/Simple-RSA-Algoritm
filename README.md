@@ -11,6 +11,8 @@ This Python program performs **RSA encryption and decryption** using an interact
 
 The program also checks if the decrypted message M' is the same as the original message M, to verify the correctness of the encryption and decryption process.
 
+The other file 'time.py' calculates the time it would take to test exhaustively the given passwords - it is question specific.
+
 ## Steps in the Program:
 1. **User Input**: The user is asked to input the following:
    - p (first prime number)
